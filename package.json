@@ -1,0 +1,27 @@
+{
+  "name": "LIRI",
+  "version": "1.0.0",
+  "description": "LIRI bot is a language interpreter just as SIRI is a speech interpreter",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jwb81/LIRI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jwb81/LIRI/issues"
+  },
+  "homepage": "https://github.com/Jwb81/LIRI#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "moment": "^2.22.2",
+    "node-spotify-api": "^1.0.7",
+    "request": "^2.88.0"
+  }
+}
