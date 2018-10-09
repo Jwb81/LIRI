@@ -12,6 +12,11 @@ LIRI is a language interpreter that understands a few command line commands.  Th
 Uses the OMDB API to search for a given title and it displays a few details about that movie.
 - Usage: **node liri.js movie-this 'movie-name'**
 - Example: **node liri.js movie-this 'The Martian'**
+- Returned data:
+    - Artist(s)
+    - Song name
+    - Preview link on Spotify
+    - Album name
 
 
 ## Search Movies
@@ -19,16 +24,29 @@ Uses the Spotify API to search for results based on a given song name.  The defa
 - Usage: **node liri.js spotify-this-song 'song-name' [, limit]**
 - Example: **node liri.js spotify-this-song 'Just Hold On'**    // returns first result
 - Example: **node liri.js spotify-this-song 'Just Hold On' 3**  // returns first 3 results
+- Returned data: 
+    - Title
+    - Release year
+    - IMDB rating and Rotten Tomatoes rating
+    - Origin country
+    - Movie language
+    - Plot
+    - Main actors
+
 
 ## Search Concerts
 Uses the BandsInTown API to search for events based on the given artist.  The default is 1 event unless another argument is given
 - Usage: **node liri.js concert-this 'artist-name' [, limit]**
 - Example: **node liri.js concert-this 'Maroon 5'**             // returns first result
 - Example: **node liri.js concert-this 'Maroon 5' 2**             // returns first 2 results
+- Returned data: 
+    - Venue name
+    - Venue location
+    - Date of the event
 
 
 ## Video demonstration
-[Downlaod a demo](./assets/videos/demo.webm)
+[Download a demo](./assets/videos/demo.webm)
 
 
 
