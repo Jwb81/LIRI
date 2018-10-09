@@ -21,7 +21,7 @@ Uses the OMDB API to search for a given title and it displays a few details abou
     - Plot
     - Main actors
 - Demo
-![Get movie](/assets/images/movie-this.png);
+![Get movie](/assets/images/movie-this.PNG);
 
 
 ## Search Songs
@@ -50,9 +50,9 @@ Uses the BandsInTown API to search for events based on the given artist.  The de
     - Venue location
     - Date of the event
 - Demo (get the next event)
-![Search for an event](./assets/images/concert-this-1.png)
+![Search for an event](./assets/images/concert-this-1.PNG)
 - Demo (get the next 3 events)
-![Search for an event](./assets/images/concert-this-2.png)
+![Search for an event](./assets/images/concert-this-2.PNG)
 
 
 ## Video demonstration
