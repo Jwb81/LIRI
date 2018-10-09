@@ -8,24 +8,10 @@ LIRI is a language interpreter that understands a few command line commands.  Th
 - Randomize (picks one of the above functions): *do-what-it-says* or *random*
 
 ---
-## Search Songs
+## Search Movies
 Uses the OMDB API to search for a given title and it displays a few details about that movie.
 - Usage: **node liri.js movie-this 'movie-name'**
-- Example: **node liri.js movie-this 'The Martian'**
-- Returned data:
-    - Artist(s)
-    - Song name
-    - Preview link on Spotify
-    - Album name
-- Sample
-![Search for a song](/assets/images/spotify-1.PNG)
-
-
-## Search Movies
-Uses the Spotify API to search for results based on a given song name.  The default number is 1 song unless another argument is given after the song name
-- Usage: **node liri.js spotify-this-song 'song-name' [, limit]**
-- Example: **node liri.js spotify-this-song 'Just Hold On'**    // returns first result
-- Example: **node liri.js spotify-this-song 'Just Hold On' 3**  // returns first 3 results
+<!-- - Example: **node liri.js movie-this 'The Martian'** -->
 - Returned data: 
     - Title
     - Release year
@@ -34,6 +20,24 @@ Uses the Spotify API to search for results based on a given song name.  The defa
     - Movie language
     - Plot
     - Main actors
+- Demo
+![Get movie](/assets/iamges/movie-this.png);
+
+
+## Search Songs
+Uses the Spotify API to search for results based on a given song name.  The default number is 1 song unless another argument is given after the song name
+- Usage: **node liri.js spotify-this-song 'song-name' [, limit]**
+<!-- - Example: **node liri.js spotify-this-song 'Just Hold On'**    // returns first result -->
+<!-- - Example: **node liri.js spotify-this-song 'Just Hold On' 3**  // returns first 3 results -->
+-  Returned data:
+    - Artist(s)
+    - Song name
+    - Preview link on Spotify
+    - Album name
+- Demo (get first result)
+![Search for a song](/assets/images/spotify-1.PNG)
+- Demo (get first 3 results)
+![Search for a song](/assets/images/spotify-2.PNG)
 
 
 ## Search Concerts
