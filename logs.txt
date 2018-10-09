@@ -1,12 +1,24 @@
 
     October 9th, 2018
     Function: movie-this
-    Args: 'the martian'
+    Args: 'The Martian'
 
     October 9th, 2018
-    Function: movie-this
-    Args: 'the martian'
+    Function: spotify-this-song
+    Args: 'Just Hold On'
 
     October 9th, 2018
-    Function: movie-this
-    Args: 'the martian'
+    Function: spotify-this-song
+    Args: 'Just Hold On','2'
+
+    October 9th, 2018
+    Function: spotify-this-song
+    Args: 'Just Hold On','3'
+
+    October 9th, 2018
+    Function: concert-this
+    Args: 'maroon 5'
+
+    October 9th, 2018
+    Function: concert-this
+    Args: 'maroon 5','3'

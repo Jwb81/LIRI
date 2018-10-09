@@ -27,6 +27,10 @@ Uses the BandsInTown API to search for events based on the given artist.  The de
 - Example: **node liri.js concert-this 'Maroon 5' 2**             // returns first 2 results
 
 
+## Video demonstration
+[Watch a simple demo](./assets/videos/demo.webm)
+
+
 
 
 ## Setup
