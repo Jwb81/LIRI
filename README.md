@@ -1,11 +1,13 @@
 # LIRI
-LIRI bot is a language interpreter just as SIRI is a speech interpreter
+LIRI is a language interpreter that understands a few command line commands.  The user can call the bot from the terminal and get back some information about a movie, song, or concert event.  Every program call is logged to 'log.txt' for later access.
 
 ## Functions
 - Search movies: *movie-this* or *movie* 
 - Search songs: *spotify-this-song* or *song*
 - Search for concert events: *concert-this* or *concert*
 - Randomize (picks one of the above functions): *do-what-it-says* or *random*
+
+
 
 
 ### Search Songs
