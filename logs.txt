@@ -30,3 +30,7 @@
     October 9th, 2018
     Function: spotify-this-song
     Args: 
+
+    October 9th, 2018
+    Function: movie-this
+    Args: 'the martian'
