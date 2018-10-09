@@ -21,7 +21,7 @@ Uses the OMDB API to search for a given title and it displays a few details abou
     - Plot
     - Main actors
 - Demo
-![Get movie](/assets/iamges/movie-this.png);
+![Get movie](/assets/images/movie-this.png);
 
 
 ## Search Songs
@@ -43,12 +43,16 @@ Uses the Spotify API to search for results based on a given song name.  The defa
 ## Search Concerts
 Uses the BandsInTown API to search for events based on the given artist.  The default is 1 event unless another argument is given
 - Usage: **node liri.js concert-this 'artist-name' [, limit]**
-- Example: **node liri.js concert-this 'Maroon 5'**             // returns first result
-- Example: **node liri.js concert-this 'Maroon 5' 2**             // returns first 2 results
+<!-- - Example: **node liri.js concert-this 'Maroon 5'**             // returns first result -->
+<!-- - Example: **node liri.js concert-this 'Maroon 5' 2**             // returns first 2 results -->
 - Returned data: 
     - Venue name
     - Venue location
     - Date of the event
+- Demo (get the next event)
+![Search for an event](./assets/images/concert-this-1.png)
+- Demo (get the next 3 events)
+![Search for an event](./assets/images/concert-this-2.png)
 
 
 ## Video demonstration
