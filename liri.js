@@ -1,4 +1,4 @@
-require('dotenv').config();               
+require('dotenv').config();
 let Spotify = require('node-spotify-api');
 let request = require('request');
 let moment = require('moment');
@@ -13,14 +13,14 @@ if (args.length < 1)
     return console.log('usage: <action> <name-of-media>');
 
 // create a new spotify object with the constructor
-let spotify = new Spotify(keys.spotify);
+let spotify = new Spotify(keys.keys.spotify);
 
 // set the base url for OMDB API
-let omdbUrl = 'http://www.omdbapi.com/?apikey=trilogy&t=';
+let omdbUrl = 'http://www.omdbapi.com/?apikey=' + keys.keys.omdb + '&t=';
 
 // set the url for Bands in Town API
 let bandsUrlBase = 'https://rest.bandsintown.com/artists/';
-let bandsUrlEnd = '/events?app_id=codingbootcamp';
+let bandsUrlEnd = '/events?app_id=' + keys.keys.bandsInTown;
 
 // put functions in an object that will be called by the user on the command line
 let functions = {
@@ -29,6 +29,8 @@ let functions = {
     },
 
     'concert-this': (artist) => {
+        if (artist == '') 
+            console.log('Nothing');
         searchBands(artist);
     },
 
@@ -58,13 +60,20 @@ let searchSpotify = (song, limit) => {
             return console.log('Error occurred: ' + err);
         }
 
-        for ( let i = 0; i < data.tracks.items.length; i++) {
+        let items = data.tracks.items;
+
+        if (items.length === 0) {
+            console.log('Sorry, but that song did not return any results...');
+            return;
+        }
+
+        for (let i = 0; i < items.length; i++) {
             console.log(
                 `*************************************************` +
-                `\n\nArtist: ${data.tracks.items[i].album.artists[0].name}` +
-                `\nName: ${data.tracks.items[i].name}` +
-                `\nPreview: ${data.tracks.items[i].external_urls.spotify}` +
-                `\nAlbum: ${data.tracks.items[i].album.name}` +
+                `\n\nArtist: ${items[i].album.artists[0].name}` +
+                `\nName: ${items[i].name}` +
+                `\nPreview: ${items[i].external_urls.spotify}` +
+                `\nAlbum: ${items[i].album.name}` +
                 `\n\n*************************************************`
             )
         }
@@ -84,7 +93,7 @@ let searchBands = (artist) => {
 
         if (!body[0])
             return console.log('That artist returned no results...');
-        else 
+        else
             console.log(body);
 
         // fs.writeFile('log.json', JSON.stringify(body[0], null, 2), (err) => {
@@ -98,9 +107,16 @@ let searchBands = (artist) => {
 let searchMovies = (movie) => {
     let query = omdbUrl + movie;
     request(query, (err, res, body) => {
+        // parse the returned data
         body = JSON.parse(body);
 
-        // console.log(body);
+        // check if there is a result
+        if (body.Response === 'False') {
+            console.log('Sorry, that movie did not return any results...');
+            return;
+        }
+
+        // check to see if there is a rating available for Rotten Tomatoes
         let rtRating;
         if (body.Ratings.length)
             body.Ratings.forEach(x => {
@@ -109,12 +125,12 @@ let searchMovies = (movie) => {
                 }
             })
 
+        // display the data in the console
         console.log(
             `*************************************************` +
             `\n\nTitle: ${body.Title}` +
             `\nYear: ${body.Year}` +
             `\nIMDB Rating: ${body.imdbRating}` +
-            // `\nRT Rating: ${body.Ratings[1].Source === 'Rotten Tomatoes' ? body.Ratings[1].Value : '-'}` +
             `\nRT Rating: ${rtRating || '-'}` +
             `\nCountry: ${body.Country}` +
             `\nLanguage: ${body.Language}` +
@@ -122,6 +138,8 @@ let searchMovies = (movie) => {
             `\nActors: ${body.Actors}` +
             `\n\n*************************************************`
         )
+
+        // log some data out to the log.json file
         fs.writeFile('log.json', JSON.stringify(body, null, 2), (err) => {
             if (err)
                 return console.log(err);
@@ -129,9 +147,9 @@ let searchMovies = (movie) => {
     })
 }
 
-let action = args[0];       // get the action from the user on the command line when this program is called
-let ops = args.splice(1);   // hold all arguments beyond the function call
-// let defaultSong = 
+let action = args[0]; // get the action from the user on the command line when this program is called
+let ops = args.slice(1); // hold all arguments beyond the function call
+let defaultSong = 'The Sign';
 
 // added some shortcuts for each function call
 switch (action) {
@@ -154,4 +172,11 @@ if (!functions[action])
     return console.log('That is not a valid command...');
 
 // call the function specified by the user
-functions[action](...ops);
+if (ops.length)
+    functions[action](...ops);
+else if (action == 'song' || action == 'spotify-this-song')
+    functions[action](defaultSong);
+else {
+    // there is no default for the other functions, so tell the user to enter a value
+    console.log('Please enter a search term with that search...')
+}
