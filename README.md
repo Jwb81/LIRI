@@ -14,7 +14,7 @@ Instead of typing out the full function name, the user can use 'movie', 'song', 
 
 ### Search Songs
 Uses the OMDB API to search for a given title and it displays a few details about that movie.
-    - Usage: **node liri.js movie-this 'movie-name'**
+- Usage: **node liri.js movie-this 'movie-name'**
 
 
 
