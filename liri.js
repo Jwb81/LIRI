@@ -5,6 +5,8 @@ let moment = require('moment');
 let fs = require('fs');
 var keys = require('./keys');
 
+moment().format('MM-DD-YYYY');
+
 // get the arguments from the user
 let args = process.argv.slice(2);
 
@@ -22,16 +24,23 @@ let omdbUrl = 'http://www.omdbapi.com/?apikey=' + keys.keys.omdb + '&t=';
 let bandsUrlBase = 'https://rest.bandsintown.com/artists/';
 let bandsUrlEnd = '/events?app_id=' + keys.keys.bandsInTown;
 
+let defaultSong = 'The Sign';
+
 // put functions in an object that will be called by the user on the command line
 let functions = {
     'spotify-this-song': (song, limit = 1) => {
+        if (!song) {
+            song = defaultSong;
+        }
         searchSpotify(song, limit);
     },
 
-    'concert-this': (artist) => {
-        if (artist == '') 
-            console.log('Nothing');
-        searchBands(artist);
+    'concert-this': (artist, limit = 1) => {
+        if (!artist) {
+            console.log('You must enter an artist as a search term for this function...');
+
+        }
+        searchBands(artist, limit);
     },
 
     'movie-this': (movie) => {
@@ -70,7 +79,8 @@ let searchSpotify = (song, limit) => {
         for (let i = 0; i < items.length; i++) {
             console.log(
                 `*************************************************` +
-                `\n\nArtist: ${items[i].album.artists[0].name}` +
+                `\n\n#${i+1}` +
+                `\nArtist: ${items[i].album.artists[0].name}` +
                 `\nName: ${items[i].name}` +
                 `\nPreview: ${items[i].external_urls.spotify}` +
                 `\nAlbum: ${items[i].album.name}` +
@@ -86,15 +96,39 @@ let searchSpotify = (song, limit) => {
 }
 
 // search BandsInTown API for events when given an artist name
-let searchBands = (artist) => {
+let searchBands = (artist, limit) => {
     let query = bandsUrlBase + artist + bandsUrlEnd;
     request(query, (err, res, body) => {
-        body = JSON.parse(body);
 
-        if (!body[0])
-            return console.log('That artist returned no results...');
-        else
-            console.log(body);
+        // try to parse the returned data
+        try {
+            body = JSON.parse(body);
+        }
+        catch (err) {
+            // console.log(err);
+            console.log('Sorry, that artist did not return any results...');
+            return;
+        }
+
+        for (let i = 0; i < limit; i++) {
+            // make sure the event exists
+            if (!body[i]) {
+                console.log('This is the end of the scheduled events!');
+                break;
+            }
+
+            // format the date using MomentJS
+            let concertDate = moment(body[i].datetime).format('MMMM Do, YYYY @ h:mma');
+
+            console.log(
+                `*************************************************` +
+                `\n\n#${i+1}` +
+                `\nVenue: ${body[i].venue.name}` + 
+                `\nLocation: ${body[i].venue.city}, ${body[i].venue.region}, ${body[i].venue.country}` +
+                `\nDate: ${concertDate}` +
+                `\n\n*************************************************`
+            )
+        }
 
         // fs.writeFile('log.json', JSON.stringify(body[0], null, 2), (err) => {
         //     if (err)
@@ -149,7 +183,7 @@ let searchMovies = (movie) => {
 
 let action = args[0]; // get the action from the user on the command line when this program is called
 let ops = args.slice(1); // hold all arguments beyond the function call
-let defaultSong = 'The Sign';
+
 
 // added some shortcuts for each function call
 switch (action) {
@@ -172,11 +206,22 @@ if (!functions[action])
     return console.log('That is not a valid command...');
 
 // call the function specified by the user
-if (ops.length)
-    functions[action](...ops);
-else if (action == 'song' || action == 'spotify-this-song')
-    functions[action](defaultSong);
-else {
-    // there is no default for the other functions, so tell the user to enter a value
-    console.log('Please enter a search term with that search...')
-}
+// if (ops.length)
+//     functions[action](...ops);
+// else if (action == 'song' || action == 'spotify-this-song')
+//     functions[action](defaultSong);
+// else {
+//     // there is no default for the other functions, so tell the user to enter a value
+//     console.log('Please enter a search term with that search...')
+// }
+functions[action](...ops);
+
+let logData = `
+    ${moment().format('MMMM Do, YYYY')}
+    Function: ${action}
+    Args: ${ops.map(x => `'${x}'`)}
+`
+fs.appendFile('./logs.txt', logData, (err) => {
+    if (err)
+        console.log(err);
+})
