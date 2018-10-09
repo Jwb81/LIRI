@@ -2,13 +2,10 @@
 LIRI bot is a language interpreter just as SIRI is a speech interpreter
 
 ## Functions
-- Search movies
-- Search songs
-- Search for concert events
-- Randomize: is one of the three functions above
-
-## Shortcuts
-Instead of typing out the full function name, the user can use 'movie', 'song', or 'concert' in place of the above functions, respectively.
+- Search movies: *movie-this* or *movie* 
+- Search songs: *spotify-this-song* or *song*
+- Search for concert events: *concert-this* or *concert*
+- Randomize (picks one of the above functions): *do-what-it-says* or *random*
 
 
 ### Search Songs

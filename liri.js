@@ -198,6 +198,9 @@ switch (action) {
     case 'concert':
         action = 'concert-this';
         break;
+    case 'random':
+        action = 'do-what-it-says';
+        break;
     default:
         // do nothing
         break;
