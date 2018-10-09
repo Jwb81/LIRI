@@ -5,8 +5,6 @@ let moment = require('moment');
 let fs = require('fs');
 var keys = require('./keys');
 
-moment().format('MM-DD-YYYY');
-
 // get the arguments from the user
 let args = process.argv.slice(2);
 
@@ -24,7 +22,8 @@ let omdbUrl = 'http://www.omdbapi.com/?apikey=' + keys.keys.omdb + '&t=';
 let bandsUrlBase = 'https://rest.bandsintown.com/artists/';
 let bandsUrlEnd = '/events?app_id=' + keys.keys.bandsInTown;
 
-let defaultSong = 'The Sign';
+let defaultSong = 'The Sign Ace of Base';
+let defaultMovie = 'Mr. Nobody';
 
 // put functions in an object that will be called by the user on the command line
 let functions = {
@@ -44,6 +43,9 @@ let functions = {
     },
 
     'movie-this': (movie) => {
+        if (!movie)
+            movie = defaultMovie;
+
         searchMovies(movie);
     },
 
@@ -205,17 +207,10 @@ switch (action) {
 if (!functions[action])
     return console.log('That is not a valid command...');
 
-// call the function specified by the user
-// if (ops.length)
-//     functions[action](...ops);
-// else if (action == 'song' || action == 'spotify-this-song')
-//     functions[action](defaultSong);
-// else {
-//     // there is no default for the other functions, so tell the user to enter a value
-//     console.log('Please enter a search term with that search...')
-// }
+// call the function and pass in the options
 functions[action](...ops);
 
+// log the data to a file
 let logData = `
     ${moment().format('MMMM Do, YYYY')}
     Function: ${action}
