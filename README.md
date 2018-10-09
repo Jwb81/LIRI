@@ -31,7 +31,7 @@ Uses the BandsInTown API to search for events based on the given artist.  The de
 
 ## Setup
 1. Clone this repo to your host machine and run **npm install** to install required packages
-2. Create a *.env* file to store API keys.  The format should look like this:
+2. Create a *.env* file in the root directory to store API keys.  The format should look like this:
 ```
 # Spotify API keys
 
@@ -45,3 +45,4 @@ BANDSINTOWN_KEY=YOUR_KEY_HERE
 OMDB_KEY=YOUR_KEY_HERE
 
 ```
+3. You're good to go.  Try running it!
