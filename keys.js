@@ -5,8 +5,10 @@ exports.keys = {
     id: process.env.SPOTIFY_ID,
     secret: process.env.SPOTIFY_SECRET,
   },
-  bandsInTown: 'codingbootcamp',
-  omdb: 'trilogy'
+  // bandsInTown: 'codingbootcamp',
+  // omdb: 'trilogy'
+  bandsInTown: process.env.BANDSINTOWN_KEY,
+  omdb: process.env.OMDB_KEY
   
 };
 

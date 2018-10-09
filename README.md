@@ -33,6 +33,15 @@ Uses the BandsInTown API to search for events based on the given artist.  The de
 1. Clone this repo to your host machine and run **npm install** to install required packages
 2. Create a *.env* file to store API keys.  The format should look like this:
 ```
-if (isAwesome) 
-    return true;
+# Spotify API keys
+
+SPOTIFY_ID=YOUR_SPOTIFY_KEY_HERE
+SPOTIFY_SECRET=YOUR_SPOTIFY_SECRET_HERE
+
+# BandsInTown API keys
+BANDSINTOWN_KEY=YOUR_KEY_HERE
+
+# OMDB API key
+OMDB_KEY=YOUR_KEY_HERE
+
 ```
