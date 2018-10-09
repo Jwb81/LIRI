@@ -18,7 +18,7 @@ Uses the OMDB API to search for a given title and it displays a few details abou
     - Preview link on Spotify
     - Album name
 - Sample
-    - ![Search for a song](/assets/images/spotify-1.png)
+    - ![Search for a song](assets/images/spotify-1.png)
 
 
 ## Search Movies
