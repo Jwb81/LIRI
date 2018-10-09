@@ -7,7 +7,7 @@ LIRI is a language interpreter that understands a few command line commands.  Th
 - Search for concert events: *concert-this* or *concert*
 - Randomize (picks one of the above functions): *do-what-it-says* or *random*
 
-
+---
 ## Search Songs
 Uses the OMDB API to search for a given title and it displays a few details about that movie.
 - Usage: **node liri.js movie-this 'movie-name'**
@@ -28,11 +28,11 @@ Uses the BandsInTown API to search for events based on the given artist.  The de
 
 
 ## Video demonstration
-[Watch a simple demo](./assets/videos/demo.webm)
+[Downlaod a demo](./assets/videos/demo.webm)
 
 
 
-
+---
 ## Setup
 1. Clone this repo to your host machine and run **npm install** to install required packages
 2. Create a *.env* file in the root directory to store API keys.  The format should look like this:
